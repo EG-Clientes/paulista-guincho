@@ -20,10 +20,48 @@ export default function Hero() {
     <section
       id="inicio"
       ref={heroRef}
-      className="relative pt-32 pb-10 md:pt-40 md:pb-14 flex items-center justify-center overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-[#F8FAFC]"
+      className="relative pt-32 pb-10 md:pt-40 md:pb-14 flex items-center justify-center overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950"
     >
-      {/* Luz ambiente de fundo */}
+      {/* ========================================================
+          CAMADA DE VÍDEO SUAVE + OVERLAYS DE CONTRASTE
+          ======================================================== */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        {/* VÍDEO MOBILE */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="block md:hidden w-full h-full object-cover object-center opacity-75"
+        >
+          <source src="/hero-mobile.mp4" type="video/mp4" />
+        </video>
+
+        {/* VÍDEO DESKTOP */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="hidden md:block w-full h-full object-cover object-center opacity-75"
+        >
+          <source src="/hero-desktop.mp4" type="video/mp4" />
+        </video>
+
+        {/* ----------------------------------------------------
+            OVERLAYS EXCLUSIVOS DO DESKTOP (hidden md:block)
+            No Mobile NADA disso aqui roda, deixando o celular 100% limpo!
+           ---------------------------------------------------- */}
+        {/* MÁSCARA ESCURA LEVE (Garante a leitura do texto sem manchas nem névoa) */}
+        <div className="absolute inset-0 bg-slate-950/40" />
+
+        
+        {/* GRADIENTE NA BASE BEM BAIXINHO E DISCRETO */}
+        <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-[#F8FAFC] to-transparent" />
+      </div>
+      {/* Luz ambiente de fundo (DESATIVADA)
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[350px] bg-amber-500/10 rounded-full blur-[120px] pointer-events-none" />
+      */}
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
@@ -121,11 +159,11 @@ export default function Hero() {
           </div>
 
           {/* LADO DIREITO: Selo Oficial Emblema (5 Colunas - No mobile fica no topo) */}
-          <div className="order-1 lg:order-2 lg:col-span-5 relative flex items-center justify-center lg:-translate-y-30">
+<div className="order-1 lg:order-2 lg:col-span-5 relative flex items-center justify-center -translate-y-8 sm:-translate-y-4 lg:-translate-y-30">
             <div className="relative mx-auto w-full max-w-[420px]">
               
               {/* Container Circular com Efeito de Revelação Suave */}
-              <div className="image-reveal-container rounded-full aspect-square w-full max-w-[380px] mx-auto p-4 bg-gradient-to-br from-slate-900/90 to-slate-950/90 border border-amber-400/30 shadow-[0_0_50px_rgba(245,158,11,0.15)] flex items-center justify-center relative">
+              <div className="image-reveal-container rounded-full aspect-square w-full max-w-[260px] sm:max-w-[300px] lg:max-w-[380px] mx-auto p-3 sm:p-4 bg-gradient-to-br from-slate-900/90 to-slate-950/90 border border-amber-400/30 shadow-[0_0_50px_rgba(245,158,11,0.15)] flex items-center justify-center relative">
                 <div className="image-reveal-overlay rounded-full" />
                 
                 <div className="relative w-full h-full rounded-full overflow-hidden flex items-center justify-center">
